@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #666;
+            margin-top: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #f9f9f9;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Log Details</h1>
+    {{ range .Intervals }}
+        <h2>{{ . }}</h2>
+        <ul>
+            {{ range index $.Logs . }}
+                <li>
+                    <strong>{{ .Timestamp.Format "15:04:05" }}:</strong>
+                    <pre>{{ .Message }}</pre>
+                </li>
+            {{ end }}
+        </ul>
+    {{ end }}
+</body>
+</html>
